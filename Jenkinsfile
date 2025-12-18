@@ -6,7 +6,13 @@ pipeline {
                 steps {
                     sh "git url: https://github.com/AkashKoche/multi-branch-pipeline.git"
                 }
-                stage('Deploy') {
+                stage('Build') {
+                    steps {
+                        sh 'echo "Building dev branch..."'
+                        sh 'python3 -m py_compile src/app.py'
+                    }
+                }
+                stage('Test') {
                     steps {
                         sh 'python3 tests/test_app.py'
                     }
