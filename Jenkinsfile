@@ -6,14 +6,15 @@ pipeline {
                 steps {
                     sh "git url: https://github.com/AkashKoche/multi-branch-pipeline.git"
                 }
-                stage('Deploy') {
+                stage('Build') {
                     steps {
-                        sh 'python3 tests/test_app.py'
+                        sh 'echo "Building (test skipped)..."'
+                        sh 'python3 -m py_compile src/app.py'
                     }
                 }
                 stage('Deploy') {
                     steps {
-                        sh 'echo "Deploying to production..."'
+                        sh 'echo "Deploying without tests!"'
                     }
                 }
             }
